@@ -1,0 +1,176 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+       xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+
+
+    <!-- see http://stackoverflow.com/questions/13860705/spring-security-role-hierarchy-issues?rq=1 -->
+
+    <beans:bean id="defaultWebSecurityExpressionHandler"
+                class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler">
+        <beans:property name="roleHierarchy" ref="roleHierarchy"/>
+    </beans:bean>
+
+
+<!--
+    <http use-expressions="true" access-decision-manager-ref="accessDecisionManager" entry-point-ref="ajaxAwareAuthEntryPoint" >
+    -->
+    <http pattern="/favicon.ico" security="none" />
+    <http pattern="/template/**" security="none" />
+    <http pattern="/error/**" security="none" />
+    <http pattern="/images/**" security="none" />
+    <http pattern="/autocomplete/**" security="none" />
+    <http pattern="/testget/**" security="none" />
+
+    <http use-expressions="true" >
+        <access-denied-handler error-page="/WEB-INF/jsp/error/accessdenied.jsp" />
+
+
+
+        <intercept-url pattern="/" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+        <intercept-url pattern="/login" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+        <intercept-url pattern="/logout" access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+        <intercept-url pattern="/j_spring_security_check"  access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+        <intercept-url pattern="/j_spring_security_logout"  access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+
+        <!-- Resources -->
+        <intercept-url pattern="/resources/**"
+                       access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+
+        <intercept-url pattern="/theme/**"
+                       access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+
+        <intercept-url pattern="/home"
+                       access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+
+        <intercept-url pattern="/about"
+                       access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+
+        <intercept-url pattern="/slider"
+                       access="hasAnyRole('ROLE_USER','ROLE_SUPERUSER','ROLE_GUEST','ROLE_ANONYMOUS')" />
+
+
+
+        <intercept-url pattern="/formexample/**"
+                       access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+
+        <intercept-url pattern="/numberlist/**"
+                       access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+
+        <intercept-url pattern="/quiz/**"
+                       access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+
+        <!--  This should be anyone or superadmin if he can do users -->
+        <intercept-url pattern="/user/create"
+                       access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+
+        <!-- who should this be? -->
+        <intercept-url pattern="/user/show"
+                       access="hasAnyRole('ROLE_ANONYMOUS','ROLE_GUEST')" />
+
+
+        <!-- THSI MUST BE CHANGED TO PRODUCTION SYSTEM -->
+        <intercept-url pattern="/account/**"
+                       access="hasAnyRole('ROLE_USER','ROLE_SUPERUSER','ROLE_GUEST','ROLE_ANONYMOUS')" />
+
+        <!-- THSI MUST BE CHANGED TO PRODUCTION SYSTEM -->
+        <intercept-url pattern="/file/**"
+                       access="hasAnyRole('ROLE_USER','ROLE_SUPERUSER','ROLE_GUEST','ROLE_ANONYMOUS')" />
+
+
+        <!--
+        any other url requires superuser privileges
+        this should be denied from all as any url should be mentioned above.
+        -->
+        <intercept-url pattern="/**" access="hasAnyRole('ROLE_SUPERUSER')" />
+
+        <!-- form login -->
+        <form-login login-page="/login" login-processing-url="/j_spring_security_check"
+                    default-target-url="/" 
+                    authentication-failure-url="/login"  />
+        <logout logout-success-url="/logout" invalidate-session="true"/>
+        <!-- logout -->
+        <logout 
+            logout-url="/j_spring_security_logout"
+            invalidate-session="true"
+        />
+
+        <!--
+        <expression-handler ref="defaultWebSecurityExpressionHandler" />
+        -->
+        <expression-handler ref="defaultWebSecurityExpressionHandler" />
+    </http>
+
+    
+    <authentication-manager alias="authenticationManager">
+
+        <authentication-provider ref="staticAuthenticationProvider"/>
+
+        <authentication-provider ref="daoAuthenticationProvider"/>
+
+    </authentication-manager>
+
+
+
+     
+     <beans:bean id="authenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+        <beans:property name="defaultFailureUrl" value="/login"/>
+    </beans:bean>
+
+    <!--
+        add to form-login authentication-success-handler-ref="authenticationSuccessHandler" if need to use.
+        <beans:bean id="authenticationSuccessHandler" class="org.proactum.skal.webapp.security.AuthenticationSuccessHandlerImpl" />
+        -->
+
+    <user-service id="staticUserDetailsService">
+        <user name="jimi" password="jimipw" authorities="ROLE_MODERATOR" />
+        <user name="bob" password="bobpw" authorities="ROLE_USER" />
+        <user name="admin" password="adminpw" authorities="ROLE_SUPERUSER" />
+    </user-service>
+
+    <!-- superusers provider -->
+    <beans:bean id="staticAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider" >
+        <beans:property name="userDetailsService" ref="staticUserDetailsService"/>
+    </beans:bean>
+
+    <beans:bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <beans:property name="userDetailsService" ref="wwwUserDetailsService"/>
+
+        <beans:property name="saltSource">
+            <beans:bean class="org.springframework.security.authentication.dao.ReflectionSaltSource">
+                <beans:property name="userPropertyToUse" value="username"/>
+            </beans:bean>
+        </beans:property>
+        <beans:property name="passwordEncoder" ref="passwordEncoder"/>
+
+    </beans:bean>
+
+    <beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+        <beans:constructor-arg index="0" value="256"/>
+    </beans:bean>
+
+    <!--  role hierarchy so no need to always list all roles to gain access -->
+    <beans:bean id="roleVoter" class="org.springframework.security.access.vote.RoleHierarchyVoter">
+        <beans:constructor-arg ref="roleHierarchy" />
+    </beans:bean>
+
+    <beans:bean id="roleHierarchy"
+          class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+        <beans:property name="hierarchy">
+            <beans:value>
+                ROLE_SUPERUSER > ROLE_USER
+                ROLE_MODERATOR > ROLE_USER
+                ROLE_USER > ROLE_GUEST
+            </beans:value>
+        </beans:property>
+    </beans:bean>
+
+
+
+</beans:beans>

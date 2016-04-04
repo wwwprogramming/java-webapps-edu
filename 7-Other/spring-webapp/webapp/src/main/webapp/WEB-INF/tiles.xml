@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<!--
+NOT MY CODE, see
+
+http://richardbarabe.wordpress.com/2014/02/02/apache-tiles-3-integration-with-spring-mvc/
+
+
+NESTING
+
+https://tiles.apache.org/framework/tutorial/advanced/nesting-extending.html
+-->
+
+<tiles-definitions>
+
+    <definition name="base.template1" template="/WEB-INF/template/default/template.jsp" >
+        <put-attribute name="header" value="/WEB-INF/template/default/header.jsp"  />
+        <put-attribute name="menu" value="/WEB-INF/template/default/menu.jsp"  />
+        <put-attribute name="footer" value="/WEB-INF/template/default/footer.jsp"  />
+    </definition>
+
+    <definition name="base.template.quiz" template="/WEB-INF/template/quiz/template.jsp" >
+        <put-attribute name="header" value="/WEB-INF/template/quiz/header.jsp"  />
+        <put-attribute name="menu" value="/WEB-INF/template/quiz/menu.jsp"  />
+        <put-attribute name="footer" value="/WEB-INF/template/quiz/footer.jsp"  />
+    </definition>
+
+
+    <definition name="/login" extends="base.template1">
+        <put-attribute name="bodyTemplate" value="/WEB-INF/jsp/login/login.jsp" />
+    </definition>
+
+    <definition name="/logout" extends="base.template1">
+
+        <put-attribute name="bodyTemplate" value="/WEB-INF/jsp/login/logout.jsp" />
+    </definition>
+
+    <definition name="/form/*"  extends="base.template1">
+        <put-attribute name="bodyTemplate" value="/WEB-INF/jsp/form/{1}.jsp" />
+    </definition>
+
+    <definition name="/numberlist/*"  extends="base.template1">
+        <put-attribute name="bodyTemplate" value="/WEB-INF/jsp/numberlist/{1}.jsp" />
+    </definition>
+
+    <definition name="/quiz/*"  extends="base.template.quiz">
+        <put-attribute name="bodyTemplate" value="/WEB-INF/jsp/quiz/{1}.jsp" />
+    </definition>
+
+    <definition name="/slider"  extends="base.template1">
+        <put-attribute name="bodyTemplate" value="/WEB-INF/jsp/slider/slider.jsp" />
+    </definition>
+
+    <definition name="/user/*"  extends="base.template1">
+        <put-attribute name="bodyTemplate" value="/WEB-INF/jsp/user/{1}.jsp" />
+    </definition>
+
+    <definition name="/account/*"  extends="base.template1">
+        <put-attribute name="bodyTemplate" value="/WEB-INF/jsp/account/{1}.jsp" />
+    </definition>
+
+    <definition name="/file/*"  extends="base.template1">
+        <put-attribute name="bodyTemplate" value="/WEB-INF/jsp/file/{1}.jsp" />
+    </definition>
+
+
+    <definition name="*" extends="base.template1">
+        <put-attribute name="bodyTemplate" value="/WEB-INF/jsp/{1}-tiles.jsp" />
+    </definition>
+
+
+
+</tiles-definitions>

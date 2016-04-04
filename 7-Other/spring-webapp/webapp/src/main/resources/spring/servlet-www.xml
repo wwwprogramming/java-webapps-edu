@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	- DispatcherServlet application context for web tier.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--
+component-scan finds all controller annotated classes, no need to set implicitely
+    <bean class="edu.uta.courses.web.HelloController"></bean>
+-->
+
+    <mvc:resources mapping="/theme/**" location="WEB-INF/theme/" />
+    <mvc:resources mapping="/resources/**" location="WEB-INF/resources/" />
+
+    <context:component-scan base-package="edu.uta.courses" use-default-filters="false">
+        <context:include-filter expression="org.springframework.stereotype.Controller" type="annotation" />
+    </context:component-scan>
+
+    <!--
+    need to have for the value annotations at the controller
+    better to move those to services, but fileupload example has uploadPath, so...
+    -->
+    <context:property-placeholder ignore-unresolvable="true" ignore-resource-not-found="true" location="classpath:application.properties" />
+
+    <mvc:annotation-driven />
+
+    <mvc:interceptors>
+        <bean id="localeChangeInterceptor"
+              class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="language" />
+        </bean>
+    </mvc:interceptors>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="5000000"/>
+    </bean>
+
+    <import resource="classpath:spring/tiles-view.xml" />
+
+</beans>
