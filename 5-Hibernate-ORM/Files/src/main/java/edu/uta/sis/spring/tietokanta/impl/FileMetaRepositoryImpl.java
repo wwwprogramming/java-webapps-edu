@@ -1,9 +1,10 @@
-package edu.uta.sis.mvc1.domain.repository.impl;
+package edu.uta.sis.spring.tietokanta.impl;
 
-import edu.uta.sis.mvc1.domain.entities.FileMetaData;
-import edu.uta.sis.mvc1.domain.repository.FileMetaRepository;
+
+import edu.uta.sis.spring.tietokanta.FileMetaRepository;
+import edu.uta.sis.spring.tietokanta.entiteetit.FileMetaData;
+import edu.uta.sis.spring.tietokanta.entiteetit.User;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,12 +19,13 @@ public class FileMetaRepositoryImpl implements FileMetaRepository {
     @PersistenceContext
     EntityManager em;
 
-    public FileMetaData createMetaDate(String origName, String newName, long size) {
+    public FileMetaData createMetaDate(String origName, String newName, long size, User user) {
 
         FileMetaData metaData = new FileMetaData();
         metaData.setOriginalName(origName);
         metaData.setNewName(newName);
         metaData.setSize(-1);
+        metaData.setUser(user);
         em.persist(metaData);
         return metaData;
     }
