@@ -22,24 +22,14 @@
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
-    <context:component-scan base-package="edu.uta.sis.*" use-default-filters="false">
+    <context:component-scan base-package="edu.uta.sis.spring" use-default-filters="false">
         <context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
 
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <!--
-        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        -->
-        <property name="prefix">
-            <value>/WEB-INF/view/jsp</value>
-        </property>
-
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
-
-
+       <property name="prefix"><value>/WEB-INF/view/jsp</value></property>
+        <property name="suffix"><value>.jsp</value></property>
     </bean>
 
 

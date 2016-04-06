@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:security="http://www.springframework.org/schema/security"
+
+       xsi:schemaLocation="
+               http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+               http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+               http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+               ">
+
+
+    <context:component-scan base-package="edu.uta.sis">
+        <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+    </context:component-scan>
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="basenames">
+            <list>
+                <value>classpath:org/springframework/security/messages</value>
+                <value>classpath:messages</value>
+            </list>
+        </property>
+    </bean>
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider>
+            <security:user-service>
+                <security:user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" />
+                <security:user name="bob" password="bobspassword" authorities="ROLE_USER" />
+            </security:user-service>
+        </security:authentication-provider>
+    </security:authentication-manager>
+
+    <security:http use-expressions="true"  >
+        <security:csrf disabled="true" />
+        <security:intercept-url pattern="/"  access="permitAll"/>
+        <security:intercept-url pattern="/home"  access="permitAll"/>
+        <security:intercept-url pattern="/home2"  access="permitAll"/>
+        <security:intercept-url pattern="/login"  access="permitAll"/>
+        <security:intercept-url pattern="/logout"  access="permitAll"/>
+        <security:intercept-url pattern="/mylogin"  access="permitAll"/>
+        <security:intercept-url pattern="/loggedin"  access="permitAll"/>
+        <security:intercept-url pattern="/loggedout"  access="permitAll"/>
+
+        <security:intercept-url pattern="/form"  access="hasRole('ROLE_USER')"/>
+
+
+        <!-- login-processing-url is /login and spring will log the user there or redirect back to login-page -->
+        <security:form-login login-page="/mylogin" default-target-url="/loggedin" />
+        <security:logout logout-success-url="/loggedout" />
+
+        <security:anonymous enabled="true" username="anonymous" granted-authority="ROLE_ANONYMOUS" />
+    </security:http>
+
+
+
+</beans>
