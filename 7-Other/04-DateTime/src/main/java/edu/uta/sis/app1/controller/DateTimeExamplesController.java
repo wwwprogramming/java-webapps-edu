@@ -76,27 +76,45 @@ public class DateTimeExamplesController {
         return "/joda/date3";
     }
 
-    @RequestMapping( value = "/date4", method = RequestMethod.GET)
-    public String date4() {
 
+    @RequestMapping( value = "/date4/{date4}", method = RequestMethod.GET)
+    public String date4(Model model, @PathVariable("date4")@DateTimeFormat(pattern = "ddMMyyyy") DateTime dateTime ) {
+        model.addAttribute("date4", dateTime);
+        model.addAttribute("now", DateTime.now());
         return "/joda/date4";
     }
 
-    @RequestMapping( value = "/date4", method = RequestMethod.POST)
-    public String date4(Model model, @ModelAttribute("form") TestForm form) {
-
-        return "/joda/date4";
-    }
-
-    @RequestMapping(value = "/date5", method = RequestMethod.GET)
-    public String date5() {
+    @RequestMapping( value = "/date5", method = RequestMethod.GET)
+    public String date5(Model model) {
+        model.addAttribute("now", DateTime.now());
         return "/joda/date5";
     }
 
     @RequestMapping(value = "/date5", method = RequestMethod.POST)
-    public String date5(Model model, @RequestBody TestForm from) {
-
+    public String date5(Model model, @ModelAttribute("form") TestForm form) {
+        System.out.println(form);
+        model.addAttribute("now", DateTime.now());
         return "/joda/date5";
+    }
+
+    @RequestMapping( value = "/date6", method = RequestMethod.GET)
+    public String date6(Model model) {
+        model.addAttribute("now", DateTime.now());
+        return "/joda/date6";
+    }
+
+    /**
+     * Form is posted here using ajax call and body is JSON encoded
+     *
+     * @param model
+     * @param from
+     * @return
+     */
+    @RequestMapping(value = "/date6", consumes = "application/json", method = RequestMethod.POST)
+    public String date6(Model model, @RequestBody TestJsonForm form) {
+        model.addAttribute("now", DateTime.now());
+        System.out.println(form);
+        return "/joda/date6";
     }
 
     @RequestMapping(value = "/hibernate6", method = RequestMethod.GET)

@@ -11,7 +11,7 @@ public class TestForm {
     // just a string
     String date1;
 
-    // defaults to iso
+    // defaults to SS
     DateTime date2;
 
     @DateTimeFormat(pattern = "dd.MM.yyyy")
@@ -50,5 +50,15 @@ public class TestForm {
 
     public void setDate4(DateTime date4) {
         this.date4 = date4;
+    }
+
+    @Override
+    public String toString() {
+        return "TestForm{" +
+                "date1='" + date1 + '\'' +
+                ", date2=" + date2 +
+                ", date3=" + date3 +
+                ", date4=" + date4 +
+                '}';
     }
 }

@@ -13,6 +13,7 @@ public class TestJsonForm {
     String date1;
 
     // defaults to iso
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     DateTime date2;
 
     @DateTimeFormat(pattern = "dd.MM.yyyy")
@@ -55,4 +56,13 @@ public class TestJsonForm {
         this.date4 = date4;
     }
 
+    @Override
+    public String toString() {
+        return "TestJsonForm{" +
+                "date1='" + date1 + '\'' +
+                ", date2=" + date2 +
+                ", date3=" + date3 +
+                ", date4=" + date4 +
+                '}';
+    }
 }
