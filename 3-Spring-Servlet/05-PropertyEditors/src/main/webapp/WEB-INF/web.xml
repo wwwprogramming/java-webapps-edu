@@ -3,22 +3,22 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 	      http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
-    <session-config>  <!--  10 minutes -->
-        <session-timeout>10</session-timeout>
-    </session-config>
+  <display-name>HelloWorld Spring</display-name>
 
     <servlet>
-        <display-name>Servlet1</display-name>
-        <servlet-name>Servlet1</servlet-name>
-        <servlet-class>uta.sis.tvpk.HelloServlet</servlet-class>
+        <servlet-name>initb</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:my-servlet.xml</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Servlet1</servlet-name>
+        <servlet-name>initb</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
-
 
 </web-app>
