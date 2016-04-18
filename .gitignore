@@ -16,7 +16,9 @@ target/
 # HSQL
 ########
 
-data/dbdata.*
+**/data/dbdata.*
+
+
 
 #################
 ## Eclipse
