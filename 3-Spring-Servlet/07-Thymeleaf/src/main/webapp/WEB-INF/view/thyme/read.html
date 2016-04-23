@@ -1,0 +1,32 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>CRUD and List Templates</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+</head>
+
+<body>
+
+<h1 th:text="#{thyme.read.h1}">The Item</h1>
+
+<div id="topnav">
+    <a href="list.html" th:href="@{/th/home}"><span th:text="#{quotes.action.list}">Listaus</span></a>
+</div>
+
+<table>
+    <tr><th th:text="#{quotes.th.id}">ID</th><td th:text="${quote.id}">1</td></tr>
+    <tr><th th:text="#{quotes.th.quote}">Quote</th><td th:text="${quote.quote}">Tadaa ta daa</td></tr>
+    <tr><th th:text="#{quotes.th.who}">Who</th><td th:text="${quote.who}">John Deo</td></tr>
+    <tr><th th:text="#{quotes.th.year}">Year</th><td th:text="${quote.year}">4444</td></tr>
+    <tr><th th:text="#{quotes.th.actions}">Actions</th><td>
+        <a href="update.html" th:href="@{/th/update/{id}(id=${quote.id})}"><span th:text="#{quotes.action.update}">Updatea</span></a>
+    </td></tr>
+</table>
+
+</body>
+
+</html>

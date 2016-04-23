@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>CRUD and List Templates</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+</head>
+
+<body>
+
+<h1 th:text="#{thyme.home.list.h1}">The List of What Ever</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th th:text="#{quotes.th.id}">ID</th>
+        <th th:text="#{quotes.th.quote}">Quote</th>
+        <th th:text="#{quotes.th.who}">Who</th>
+        <th th:text="#{quotes.th.year}">Year</th>
+        <th th:text="#{quotes.th.actions}">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="quote : ${quotes}">
+        <td th:text="${quote.id}">#1</td>
+        <td th:text="${quote.quote}">Parempi pyy pivossa kuin kuoppaa kaivamassa</td>
+        <td th:text="${quote.who}">Jaska Jokunen</td>
+        <td th:text="${quote.year}">9999</td>
+        <td >
+            <a href="delete.html" th:href="@{/th/delete/{id}(id=${quote.id})}"><span th:text="#{quotes.action.delete}">Delete...</span></a>
+            <a href="read.html" th:href="@{/th/read/{id}(id=${quote.id})}"><span th:text="#{quotes.action.read}">Read...</span></a>
+
+        </td>
+    </tr>
+    </tbody>
+    </table>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	- DispatcherServlet application context for web tier.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    component-scan finds all controller annotated classes, no need to set implicitly
+        <bean class=".....HelloController"></bean>
+        annotation-driven scans @RequestMapping annotaions
+    -->
+    <mvc:annotation-driven />
+
+    <mvc:resources mapping="/resources/**" location="WEB-INF/resources/" />
+
+    <context:component-scan base-package="edu.uta.sis.spring" use-default-filters="false">
+        <context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+    </context:component-scan>
+
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/view" />
+        <property name="suffix" value=".jsp" />
+        <property name="order" value="2" />
+        <property name="viewNames" value="/jsp/*" />
+    </bean>
+
+
+    <bean id="thymeTemplateResolver"
+          class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+        <property name="prefix" value="/WEB-INF/view" />
+        <property name="suffix" value=".html" />
+        <property name="templateMode" value="HTML5" />
+    </bean>
+
+    <bean id="thymeTemplateEngine"
+          class="edu.uta.sis.spring.thyme.MySpringTemplateEngine">
+        <property name="templateResolver" ref="thymeTemplateResolver" />
+
+    </bean>
+
+    <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="thymeTemplateEngine" />
+        <property name="order" value="1" />
+        <property name="viewNames" value="/thyme/*" />
+    </bean>
+
+
+</beans>

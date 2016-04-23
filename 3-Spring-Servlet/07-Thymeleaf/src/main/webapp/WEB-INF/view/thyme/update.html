@@ -1,0 +1,33 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>CRUD and List Templates</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+</head>
+
+<body>
+
+<h1 th:text="#{thyme.update.h1}">The Form To Update</h1>
+
+
+<div id="topnav">
+    <a href="list.html" th:href="@{/th/home}"><span th:text="#{quotes.action.list}">Listuas</span></a>
+</div>
+<form method="post" action="update.html" th:action="@{/th/update/{id}(id=${quote.id})}">
+<table>
+    <tr><th th:text="#{quotes.th.id}">ID</th><td><input type="text" name="id" disabled="disabled" value="1" th:value="${quote.id}" /></td></tr>
+    <tr><th th:text="#{quotes.th.quote}">Quote</th><td><input type="text" name="quote" value="quote...." th:value="${quote.quote}" /></td></tr>
+    <tr><th th:text="#{quotes.th.who}">Who</th><td><input type="text" name="who" value="John..." th:value="${quote.who}" /></td></tr>
+    <tr><th th:text="#{quotes.th.year}">Year</th><td><input type="text" name="year" value="9876" th:value="${quote.year}" /></td></tr>
+    <tr><th>&nbsp;</th><td>
+        <button type="submit"><span th:text="#{quotes.action.update}">Update</span></button>
+    </td></tr>
+</table>
+</form>
+</body>
+
+</html>

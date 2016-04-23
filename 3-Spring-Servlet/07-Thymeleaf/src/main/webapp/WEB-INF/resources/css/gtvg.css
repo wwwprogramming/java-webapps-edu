@@ -1,0 +1,12 @@
+#topnav {
+    float:left;
+    width:100%;
+    display: block;
+    margin: 10px;
+}
+
+#topnav a span {
+    width:150px;
+    display: block;
+    border: 1px solid black;
+}
