@@ -10,7 +10,7 @@
 
 <c:if test="${not empty param.error}">
 <div class="error-message">
-<s_message code="" text="Virihe" />
+
 ${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}
 </div>
 </c:if>
