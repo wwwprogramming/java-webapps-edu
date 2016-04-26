@@ -4,12 +4,12 @@
 
 <h2>Test Form</h2>
 
-<spring:hasBindErrors name="form">
+<s:hasBindErrors name="form">
 	<c:forEach var="error" items="${errors.allErrors}">
-		<b><spring:message message="${error}" /></b>
+		<b><s:message message="${error}" /></b>
 		<br />
 	</c:forEach>
-    </spring:hasBindErrors>
+    </s:hasBindErrors>
 
 <table>
     <tr>
