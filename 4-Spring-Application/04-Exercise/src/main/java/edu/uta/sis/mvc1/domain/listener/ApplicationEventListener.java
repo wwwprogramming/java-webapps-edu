@@ -1,5 +1,7 @@
 package edu.uta.sis.mvc1.domain.listener;
 
+import edu.uta.sis.mvc1.domain.repository.FileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;

@@ -2,9 +2,12 @@ package edu.uta.sis.i18n.controller;
 
 import edu.uta.sis.i18n.domain.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Locale;
 
 /**
  * Created by Hannu Lohtander on 13.3.2016.
@@ -15,8 +18,10 @@ public class HomeController {
     @Autowired
     HomeService homeService;
 
+
     @RequestMapping(value={"/home", "/", ""})
-    public String home(Model model) {
+    public String home(Locale locale,Model model) {
+
         model.addAttribute("hello", homeService.getHello());
         return "/home";
     }
