@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xmlns:security="http://www.springframework.org/schema/security"
+
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider ref="myAuthenticationProvider"/>
+    </security:authentication-manager>
+
+    <bean id="myDemoFilter" class="edu.uta.sis.spring.security.MyDemoFilter">
+        <property name="userService" ref="userService" />
+    </bean>
+
+    <security:http use-expressions="true"  >
+        <security:csrf disabled="true" />
+        <security:intercept-url pattern="/"  access="permitAll"/>
+        <security:intercept-url pattern="/afterlogin"  access="permitAll"/>
+        <security:intercept-url pattern="/login"  access="permitAll"/>
+        <security:intercept-url pattern="/logout"  access="permitAll"/>
+
+        <security:form-login />
+        <security:logout />
+        <security:custom-filter ref="myDemoFilter" after="CSRF_FILTER" />
+        <security:anonymous enabled="true" username="anonymous" granted-authority="ROLE_ANONYMOUS" />
+    </security:http>
+
+    <bean id="userService" class="edu.uta.sis.spring.UserServiceImpl" />
+
+    <bean id="myAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <property name="userDetailsService" ref="userService" />
+    </bean>
+
+</beans>
