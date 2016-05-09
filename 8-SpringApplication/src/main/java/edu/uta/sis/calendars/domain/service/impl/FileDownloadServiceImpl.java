@@ -1,13 +1,15 @@
 package edu.uta.sis.calendars.domain.service.impl;
 
+import edu.uta.sis.calendars.data.entities.FileMetaDataEntity;
+import edu.uta.sis.calendars.data.repository.FileMetaRepository;
 import edu.uta.sis.calendars.data.repository.FileRepository;
 import edu.uta.sis.calendars.domain.service.FileDownloadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Hannu Lohtander on 3.4.2016.
@@ -21,6 +23,10 @@ public class FileDownloadServiceImpl implements FileDownloadService {
     @Autowired
     FileRepository fileRepository;
 
+    @Autowired
+    FileMetaRepository fileMetaRepository;
+
+
     public HashMap<String,String> getFileList() {
 
         String[] files = fileRepository.getFileList(filesUploadDir);
@@ -31,9 +37,10 @@ public class FileDownloadServiceImpl implements FileDownloadService {
         return fileData;
     }
 
-    public Resource getFile(String id) {
 
-        return null;
+    public List<FileMetaDataEntity> getFileMetadata() {
+        return fileMetaRepository.getList();
     }
+
 
 }

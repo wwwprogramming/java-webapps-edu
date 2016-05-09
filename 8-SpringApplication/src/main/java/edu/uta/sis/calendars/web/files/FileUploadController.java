@@ -1,8 +1,10 @@
 package edu.uta.sis.calendars.web.files;
 
+import edu.uta.sis.calendars.domain.data.WwwUser;
 import edu.uta.sis.calendars.domain.service.FileDownloadService;
 import edu.uta.sis.calendars.domain.service.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,23 +30,13 @@ public class FileUploadController {
         return "/files/upload/form";
     }
 
-
-
-
     @RequestMapping(value="/files/upload", method = RequestMethod.POST)
-    public String doUpload(@RequestParam("file") MultipartFile multipartFile, Model model) throws IOException{
-        try {
-            String newFileName = fileUploadService.uploadFile(multipartFile);
-        } catch (IOException ioe) {
+    public String doUpload(@RequestParam("file") MultipartFile multipartFile, @AuthenticationPrincipal WwwUser user, Model model) throws IOException{
+        String newFileName = fileUploadService.uploadFile(multipartFile, user.getId());
+        model.addAttribute("fileList", fileDownloadService.getFileList());
 
-        }
-            return "redirect:/files/list";
-    }
-
-    @ExceptionHandler(value = Exception.class)
-    public ModelAndView manageException() {
-
-        return new ModelAndView();
+        model.addAttribute("newFileName", newFileName);
+        return "/files/list";
     }
 
 

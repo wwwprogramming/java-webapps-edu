@@ -20,8 +20,10 @@
 
 </pre>
 <ul>
-    <li><a href="files/update.html" th:href="@{/files/upload}"><span th:text="#{home.files.upload}">Upload File</span></a></li>
+    <li th:if="${#authorization.expression('isAuthenticated()')}"><a href="files/upload.html" th:href="@{/files/upload}"><span th:text="#{home.files.upload}">Upload File</span></a></li>
     <li><a href="files/list.html" th:href="@{/files/list}"><span th:text="#{home.files.list}">List of Files</span></a></li>
+    <li><a href="files/metadata.html" th:href="@{/files/metadata}"><span th:text="#{home.filesmeta.list}">List Meta of Files</span></a></li>
+
     <li><a href="events/list.html" th:href="@{/events/list}"><span th:text="#{home.events.list}">Events</span></a></li>
 </ul>
 

@@ -14,5 +14,5 @@ public interface FileUploadService {
      * @param file
      * @return filename of the uploaded file
      */
-    public String uploadFile(MultipartFile file) throws IOException;
+    public String uploadFile(MultipartFile file, Long owner) throws IOException;
 }

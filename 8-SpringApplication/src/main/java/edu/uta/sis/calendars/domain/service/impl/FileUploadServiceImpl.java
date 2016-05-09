@@ -1,10 +1,14 @@
 package edu.uta.sis.calendars.domain.service.impl;
 
+import edu.uta.sis.calendars.data.entities.UserEntity;
+import edu.uta.sis.calendars.data.repository.FileMetaRepository;
 import edu.uta.sis.calendars.data.repository.FileRepository;
+import edu.uta.sis.calendars.data.repository.UserRepository;
 import edu.uta.sis.calendars.domain.service.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -21,10 +25,18 @@ public class FileUploadServiceImpl implements FileUploadService {
     @Autowired
     FileRepository fileRepository;
 
-    public String uploadFile(MultipartFile file) throws IOException{
-        String newFileName = generateFilename(file.getOriginalFilename());
-        fileRepository.saveFile(filesUploadDir, newFileName, file);
+    @Autowired
+    FileMetaRepository fileMetaRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
+    @Transactional(readOnly = false)
+    public String uploadFile(MultipartFile file, Long owner) throws IOException{
+        String newFileName = generateFilename(file.getOriginalFilename());
+        UserEntity user = userRepository.getUser(owner.intValue());
+        fileRepository.saveFile(filesUploadDir, newFileName, file);
+        fileMetaRepository.createMetaData(file.getOriginalFilename(), newFileName, file.getSize(), user);
 
         return newFileName;
     }
