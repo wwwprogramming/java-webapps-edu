@@ -1,0 +1,35 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Calendars - Events</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+</head>
+
+<body>
+
+<h1 th:text="#{files.list.h1}">Files</h1>
+
+<table id="listing">
+    <thead>
+    <tr>
+        <th th:text="#{files.th.id}">ID</th>
+        <th th:text="#{files.th.filename}">Title</th>
+        <th th:text="#{files.th.actions}">TODO</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="entry : ${fileList}">
+        <td th:text="${entry.key}">#1</td>
+        <td th:text="${entry.value}">File name name</td>
+        <td th:text="TODO">TODO Actions</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+
+</html>

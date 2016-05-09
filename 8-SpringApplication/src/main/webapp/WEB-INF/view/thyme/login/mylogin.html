@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Calendars - Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+</head>
+
+<body>
+
+
+<div th:if="${param.error}" class="alert alert-error">
+    <span th:text="${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}">Virhe kirjautumisessa</span>
+</div>
+
+
+<h1 th:text="login.h1">Kirjaudu</h1>
+
+
+<form method="post" action="" th:action="@{/login}" id="loginForm">
+    <div id="passwordLoginOption" class="form">
+        <div class="row">
+            <div class="label left">
+                <label for="username">Tunnus:</label>
+            </div>
+            <div class="right">
+                <div class="textWrapper">
+                    <input type="text" id="username" name="username"/>
+                </div>
+            </div>
+            <div class="cl"></div>
+        </div>
+        <div class="row">
+            <div class="label left">
+                <label for="password">Salasana:</label>
+            </div>
+            <div class="right">
+                <div class="textWrapper">
+                    <input type="password" id="password" name="password"/>
+                </div>
+            </div>
+            <div class="cl"></div>
+        </div>
+
+        <div class="buttons">
+            <input type="submit" value="Kirjaudu" id="loginFormSubmit"/>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

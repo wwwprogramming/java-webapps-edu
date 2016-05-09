@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Calendars - Event</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+</head>
+
+<body>
+
+<h1 th:text="#{events.read.h1}">Event</h1>
+
+<div id="topnav">
+    <a href="list.html" th:href="@{/events}"><span th:text="#{events.action.list}">Back To Events</span></a>
+</div>
+
+<table>
+    <tr><th th:text="#{events.th.id}">ID</th><td th:text="${event.id}">1</td></tr>
+    <tr><th th:text="#{events.th.title}">Title</th><td th:text="${event.title}">Tadaa ta daa</td></tr>
+    <tr><th th:text="#{events.th.start}">Start</th><td th:text="${#joda.format(event.start, 'dd.MM.yyyy HH:mm')}">1.1.1111 11:11</td></tr>
+    <tr><th th:text="#{events.th.end}">End</th><td th:text="${#joda.format(event.end, 'dd.MM.yyyy HH:mm')}">1.1.1111 11:11</td></tr>
+    <tr><th th:text="#{events.th.description}">Info</th><td th:text="${event.description}">.... tadaaa plaa alaa</td></tr>
+
+    <tr><th th:text="#{events.th.actions}">Actions</th><td>
+        <a href="update.html" th:href="@{/event/update/{id}(id=${event.id})}"><span th:text="#{events.action.update}">Update</span></a>
+        <a href="delete.html" th:href="@{/event/remove/{id}(id=${event.id})}"><span th:text="#{events.action.delete}">Delete...</span></a>
+
+    </td></tr>
+</table>
+
+</body>
+
+</html>

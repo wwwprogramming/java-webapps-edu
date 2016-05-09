@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <title>Calendars - Logged Out</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+</head>
+
+<body>
+
+
+<h1 th:text="#{loggedout.h1}">You have been logged out.</h1>
+
+<a href="../home.html" th:href="@{/}"><span th:text="#{page.home}">Home</span></a>
+
+<a href="mylogin.html" th:href="@{/mylogin}"><span th:text="#{link.login}">Login</span></a>
+
+</body>
+</html>

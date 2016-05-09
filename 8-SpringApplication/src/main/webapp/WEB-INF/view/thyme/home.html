@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <title>Calendars - Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+</head>
+
+<body>
+
+
+<h1 th:text="#{home.h1}">Example Application</h1>
+
+
+<pre>
+    <a href="?language=en" th:href="@{/?language=fi}"><span th:text="#{language.fi}">Fi</span></a>
+    <a href="?language=fi" th:href="@{/?language=en}"><span th:text="#{language.en}">En</span></a>
+
+</pre>
+<ul>
+    <li><a href="files/update.html" th:href="@{/files/upload}"><span th:text="#{home.files.upload}">Upload File</span></a></li>
+    <li><a href="files/list.html" th:href="@{/files/list}"><span th:text="#{home.files.list}">List of Files</span></a></li>
+    <li><a href="events/list.html" th:href="@{/events/list}"><span th:text="#{home.events.list}">Events</span></a></li>
+</ul>
+
+
+<ul>
+    <li><a href="account/register.html" th:href="@{/account/register}"><span th:text="#{register.link}">Register</span></a></li>
+    <li><a href="account/list.html" th:href="@{/accounts}"><span th:text="#{register.list}">Accounts</span></a></li>
+
+</ul>
+
+
+<ul >
+    <li th:if="${#authorization.expression('isAuthenticated()')}"><a href="login/mylogin.html" th:href="@{/logout}"><span th:text="#{link.logout}">Logout</span></a></li>
+    <li th:if="${#authorization.expression('isAnonymous()')}"><a href="login/mylogin.html" th:href="@{/mylogin}"><span th:text="#{link.login}">Login</span></a></li>
+
+</ul>
+
+<p th:if="${#authorization.expression('isAuthenticated()')}">
+    <span sec:authentication="name">Bob</span>
+</p>
+
+</body>
+</html>

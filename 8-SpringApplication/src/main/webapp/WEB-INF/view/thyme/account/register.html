@@ -1,0 +1,34 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Calendars -Accounts - Create New</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+</head>
+
+<body>
+
+<h1 th:text="#{users.create.h1}">Register</h1>
+
+<div id="topnav">
+    <a href="../home.html" th:href="@{/home}"><span th:text="#{page.home}">Home</span></a>
+</div>
+<form method="post" action="account.html" th:action="@{/account/create}">
+    <table>
+        <tr><th th:text="#{users.th.username}">Username</th><td><input type="text" name="username" value="username" th:value="${user.username}" /></td></tr>
+        <tr><th th:text="#{users.th.password}">Password</th><td><input type="text" name="password" value="password" th:value="${user.password}" /></td></tr>
+        <tr><th th:text="#{users.th.fullname}">Fullname</th><td><input type="text" name="fullName" value="fullname" th:value="${user.fullName}" /></td></tr>
+        <tr><th th:text="#{users.th.email}">Email</th><td><input type="text" name="email" value="email" th:value="${user.email}" /></td></tr>
+
+        <tr><th>&nbsp;</th><td>
+            <button type="submit"><span th:text="#{users.action.create}">Register</span></button>
+        </td></tr>
+    </table>
+</form>
+
+</body>
+
+</html>

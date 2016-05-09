@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Calendars - Upload File</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+</head>
+
+<body>
+
+<h1 th:text="#{files.create.h1}">Upload File</h1>
+
+<div id="topnav">
+    <a href="../../home.html" th:href="@{/home}"><span th:text="#{page.home}">Back To Home</span></a>
+</div>
+
+<form method="post" action="upload.html" th:action="@{/files/upload}" enctype="multipart/form-data" class="form-horizontal">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-3 control-lable" for="file">Upload a file</label>
+                    <div class="col-md-7">
+                        <input type="file" name="file" id="file" class="form-control input-sm"/>
+                        <div class="has-error">
+                           ...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-actions floatRight">
+                    <input type="submit" value="Upload" class="btn btn-primary btn-sm" />
+                </div>
+            </div>
+        </form>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Calendars - Event</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+</head>
+
+<body>
+
+<h1 th:text="#{users.show.h1}">Account</h1>
+
+<div id="topnav">
+    <a href="list.html" th:href="@{/accounts}"><span th:text="#{users.action.list}">Back To Accounts</span></a>
+</div>
+
+<table>
+    <tr><th th:text="#{users.th.id}">ID</th><td th:text="${user.id}">1</td></tr>
+    <tr><th th:text="#{users.th.username}">Title</th><td th:text="${user.username}">heikki1</td></tr>
+    <tr><th th:text="#{users.th.fullName}">Start</th><td th:text="${user.fullName}">Heikki Heikki</td></tr>
+    <tr><th th:text="#{users.th.role}">Role</th><td th:text="${user.role}">ROLE_USER</td></tr>
+
+    <tr><th th:text="#{events.th.actions}">Actions</th><td>
+        <a href="update.html" th:href="@{/account/update/{id}(id=${user.id})}"><span th:text="#{users.action.update}">Updatea</span></a>
+    </td></tr>
+</table>
+
+</body>
+
+</html>

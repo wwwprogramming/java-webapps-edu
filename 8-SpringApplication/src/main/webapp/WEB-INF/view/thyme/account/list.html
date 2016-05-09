@@ -1,0 +1,44 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Calendars - Events</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+</head>
+
+<body>
+
+<h1 th:text="#{users.list.h1}">Users</h1>
+
+<table id="listing">
+    <thead>
+    <tr>
+        <th th:text="#{users.th.id}">ID</th>
+        <th th:text="#{users.th.username}">Username</th>
+        <th th:text="#{users.th.fullName}">Fullname</th>
+        <th th:text="#{users.th.role}">Role</th>
+        <th th:text="#{users.th.actions}">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">#1</td>
+        <td th:text="${user.username}">heikki1</td>
+        <td th:text="${user.fullName}">Heikki Heikki</td>
+        <td th:text="${user.role}">ANONYMOUS</td>
+
+        <td >
+            <a href="delete.html" th:href="@{/account/delete/{id}(id=${user.id})}"><span th:text="#{users.action.delete}">Delete...</span></a>
+            <a href="read.html" th:href="@{/account/show/{id}(id=${user.id})}"><span th:text="#{users.action.read}">Details...</span></a>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Calendars - Event - Update</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+</head>
+
+<body>
+
+<h1 th:text="#{events.update.h1}">Update Event</h1>
+
+
+<div id="topnav">
+    <a href="list.html" th:href="@{/events}"><span th:text="#{events.action.list}">Back To Events</span></a>
+</div>
+<form method="post" action="update.html" th:action="@{/event/update/{id}(id=${event.id})}">
+<table>
+    <tr><th th:text="#{events.th.id}">ID</th><td><input type="text" name="id" disabled="disabled" value="1" th:value="${event.id}" /></td></tr>
+    <tr><th th:text="#{events.th.title}">Title</th><td><input type="text" name="title" value="Title" th:value="${event.title}" /></td></tr>
+    <tr><th th:text="#{events.th.start}">Start</th><td><input type="text" name="start" value="1.1.1111 11:11" th:value="${#joda.format(event.start, 'dd.MM.yyyy HH:mm')}" /></td></tr>
+    <tr><th th:text="#{events.th.end}">End</th><td><input type="text" name="end" value="1.1.1111 11:11" th:value="${#joda.format(event.end, 'dd.MM.yyyy HH:mm')}" /></td></tr>
+    <tr><th th:text="#{events.th.description}">Info</th><td><input type="text" name="description" value="About what" th:value="${event.description}" /></td></tr>
+
+    <tr><th>&nbsp;</th><td>
+        <button type="submit"><span th:text="#{events.action.update}">Update</span></button>
+    </td></tr>
+</table>
+</form>
+</body>
+
+</html>
