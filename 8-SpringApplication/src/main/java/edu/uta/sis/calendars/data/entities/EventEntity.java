@@ -2,12 +2,10 @@ package edu.uta.sis.calendars.data.entities;
 
 
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 /**
@@ -34,6 +32,15 @@ public class EventEntity {
 
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     DateTime created;
+
+    @ManyToOne
+    LocationEntity location;
+
+    @ManyToOne
+    CalendarEntity calendar;
+
+    @ManyToOne(optional = true)
+    UserEntity owner;
 
     public Integer getId() {
         return id;
@@ -81,5 +88,29 @@ public class EventEntity {
 
     public void setCreated(DateTime created) {
         this.created = created;
+    }
+
+    public LocationEntity getLocation() {
+        return location;
+    }
+
+    public void setLocation(LocationEntity location) {
+        this.location = location;
+    }
+
+    public CalendarEntity getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(CalendarEntity calendar) {
+        this.calendar = calendar;
+    }
+
+    public UserEntity getOwner() {
+        return owner;
+    }
+
+    public void setOwner(UserEntity owner) {
+        this.owner = owner;
     }
 }

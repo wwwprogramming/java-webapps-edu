@@ -4,6 +4,7 @@ package edu.uta.sis.calendars.data.repository.impl;
 import edu.uta.sis.calendars.data.entities.EventEntity;
 import edu.uta.sis.calendars.data.repository.EventsRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,6 +14,7 @@ import java.util.*;
  * Created by Hannu Lohtander on 25.4.2016.
  */
 @Repository
+@Transactional(readOnly = false)
 public class EventsRepositoryImpl implements EventsRepository {
 
     @PersistenceContext
