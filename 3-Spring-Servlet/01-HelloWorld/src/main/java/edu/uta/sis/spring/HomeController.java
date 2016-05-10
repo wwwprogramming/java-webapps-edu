@@ -14,4 +14,9 @@ public class HomeController {
         return "/home";
     }
 
+    @RequestMapping(value = "/abc")
+    public String justAnotherRandomName2() {
+        return "/home";
+    }
+
 }

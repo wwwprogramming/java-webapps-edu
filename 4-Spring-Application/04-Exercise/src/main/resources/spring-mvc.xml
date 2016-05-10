@@ -13,7 +13,8 @@
     component-scan finds all controller annotated classes, no need to set implicitely
         <bean class="edu.uta.courses.web.HelloController"></bean>
     -->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven  />
+
 
     <context:component-scan base-package="edu.uta.sis.mvc1.web" use-default-filters="false">
         <context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
@@ -60,5 +61,8 @@
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
         <property name="ignoreResourceNotFound" value="true"/>
     </bean>
+
+
+
 
 </beans>

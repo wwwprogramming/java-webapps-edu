@@ -107,12 +107,13 @@ public class DateTimeExamplesController {
      * Form is posted here using ajax call and body is JSON encoded
      *
      * @param model
-     * @param from
+     * @param form
      * @return
      */
     @RequestMapping(value = "/date6", consumes = "application/json", method = RequestMethod.POST)
     public String date6(Model model, @RequestBody TestJsonForm form) {
         model.addAttribute("now", DateTime.now());
+
         System.out.println(form);
         return "/joda/date6";
     }

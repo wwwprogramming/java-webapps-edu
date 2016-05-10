@@ -6,7 +6,9 @@ import edu.uta.sis.mvc1.domain.service.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+
 
 /**
  * Created by Hannu Lohtander on 3.4.2016.
@@ -23,6 +25,7 @@ public class FileUploadServiceImpl implements FileUploadService {
     @Autowired
     FileMetaRepository fileMetaRepository;
 
+    @Transactional(readOnly = false)
     public String uploadFile(MultipartFile file) {
         String newFileName = generateFilename(file.getOriginalFilename());
         fileRepository.saveFile(filesUploadDir, newFileName, file);

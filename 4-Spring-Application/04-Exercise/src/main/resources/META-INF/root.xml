@@ -24,4 +24,18 @@
         <property name="ignoreResourceNotFound" value="true"/>
     </bean>
 
+    <bean  id="simpleMappingExceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!-- view name resolved using bean of type InternalResourceViewResolver (declared in mvc-view-config.xml) -->
+        <property name="defaultErrorView" value="exception"/>
+        <!-- results into 'WEB-INF/jsp/exception.jsp' -->
+        <property name="exceptionMappings">
+            <props>
+
+                <prop key="java.lang.NumberFormatException">/exception</prop>
+                <prop key="java.lang.Exception">/exception</prop>
+
+            </props>
+        </property>
+    </bean>
+
 </beans>

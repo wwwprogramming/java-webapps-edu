@@ -18,4 +18,6 @@ public interface EventsService {
     public Event remove(Event q);
 
     public void create(Event q);
+
+    public void checkedScheduler();
 }

@@ -24,6 +24,7 @@ public class HomeController {
         binder.registerCustomEditor(Age.class, new AgeEditor());
         binder.registerCustomEditor(Color.class, new ColorEditor());
         binder.setDisallowedFields("id");
+
     }
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)

@@ -5,6 +5,7 @@ import edu.uta.sis.spring.tietokanta.FileMetaRepository;
 import edu.uta.sis.spring.tietokanta.entiteetit.FileMetaData;
 import edu.uta.sis.spring.tietokanta.entiteetit.User;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +20,7 @@ public class FileMetaRepositoryImpl implements FileMetaRepository {
     @PersistenceContext
     EntityManager em;
 
+    // Transaction started at the service @Transactional(readOnly = false)
     public FileMetaData createMetaDate(String origName, String newName, long size, User user) {
 
         FileMetaData metaData = new FileMetaData();
@@ -27,6 +29,7 @@ public class FileMetaRepositoryImpl implements FileMetaRepository {
         metaData.setSize(-1);
         metaData.setUser(user);
         em.persist(metaData);
+
         return metaData;
     }
 

@@ -22,7 +22,7 @@ public class FileUploadServiceImpl implements FileUploadService {
     @Autowired
     FileRepository fileRepository;
 
-    public String uploadFile(MultipartFile file) {
+    public String uploadFile(MultipartFile file) throws IOException{
         String newFileName = generateFilename(file.getOriginalFilename());
         fileRepository.saveFile(filesUploadDir, newFileName, file);
 

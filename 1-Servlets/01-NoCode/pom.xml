@@ -37,14 +37,17 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.5.1</version>
           <configuration>
-            <source>1.7</source>
-            <target>1.7</target>
+            <source>1.8</source>
+            <target>1.8</target>
           </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.tomcat.maven</groupId>
           <artifactId>tomcat7-maven-plugin</artifactId>
           <version>2.2</version>
+          <configuration>
+            <port>8888</port>
+          </configuration>
           <dependencies>
             <dependency>
               <groupId>org.apache.tomcat.embed</groupId>

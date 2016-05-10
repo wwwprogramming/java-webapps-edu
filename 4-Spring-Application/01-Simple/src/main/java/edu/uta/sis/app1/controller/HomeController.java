@@ -1,10 +1,12 @@
 package edu.uta.sis.app1.controller;
 
 import edu.uta.sis.app1.domain.HomeService;
+import edu.uta.sis.app1.domain.HomeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
  * Created by Hannu Lohtander on 13.3.2016.
@@ -18,6 +20,9 @@ public class HomeController {
     @RequestMapping("/home")
     public String home(Model model) {
         model.addAttribute("hello", homeService.getHello());
+
+        //HomeService service = new HomeServiceImpl();
+
         return "/home";
     }
 

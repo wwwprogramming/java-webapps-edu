@@ -1,5 +1,6 @@
 package edu.uta.sis.calendars.web;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,5 +20,7 @@ public class HomeController {
 
         return "/home";
     }
+
+
 
 }

@@ -1,6 +1,7 @@
 package edu.uta.sis.mvc1.domain.repository.impl;
 
 import edu.uta.sis.mvc1.domain.repository.FileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,18 +16,15 @@ import java.io.IOException;
 @Component
 public class FileRepositoryImpl implements FileRepository {
 
-    public void saveFile(String location, String name, MultipartFile file) {
-        try{
+
+    public void saveFile(String location, String name, MultipartFile file) throws IOException{
+
             //create a temp file
             File temp = new File(location + name);
             file.transferTo(temp);
 
 
-        }catch(IOException e){
 
-            e.printStackTrace();
-
-        }
     }
 
     public String[] getFileList(String location) {
