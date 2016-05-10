@@ -45,7 +45,7 @@ public class PostController {
         return "/form/example";
     }
 
-    @RequestMapping(value="/formexample/{dummy}", method = RequestMethod.POST)
+    @RequestMapping(value="/formexample/{dummy}", method= RequestMethod.POST)
     public String postExample(@PathVariable("dummy") String dummy, @RequestParam(value = "name", required = false) String name, Model model) {
         model.addAttribute("dummy", dummy);
         model.addAttribute("name", name);

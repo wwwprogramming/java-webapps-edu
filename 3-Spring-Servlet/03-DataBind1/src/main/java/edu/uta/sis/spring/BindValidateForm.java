@@ -4,7 +4,6 @@ package edu.uta.sis.spring;
 
 import edu.uta.sis.spring.validation.GoodCar;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.internal.engine.groups.Group;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;

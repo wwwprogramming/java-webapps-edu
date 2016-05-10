@@ -36,7 +36,7 @@ public class GetController {
     }
 
     @RequestMapping(value = "/get3/{id}", method = RequestMethod.GET)
-    public String get3(@PathVariable("id") Integer id, @RequestParam("name") String name, Model model) {
+    public String get3(@PathVariable("id") String id, @RequestParam("name") String name, Model model) {
         System.out.println(id);
         model.addAttribute("id", "-" + id);
         model.addAttribute("name", "-" + name);
@@ -133,7 +133,6 @@ public class GetController {
         System.out.println(requestEntity.getHeaders().getAccept()); // etc...
         return "/get/get";
     }
-
 
 
 

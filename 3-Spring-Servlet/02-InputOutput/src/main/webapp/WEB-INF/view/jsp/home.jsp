@@ -10,7 +10,5 @@
 <hr />
 <a href='<c:url value="/post"/>'>POST Method Examples</a>
 
-<a href='<c:url value="/myurl"/>'>Url 1</a>
-
 </body>
 </html>

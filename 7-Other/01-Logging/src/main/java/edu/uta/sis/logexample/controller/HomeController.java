@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
 
-
-    Logger logger = Logger.getLogger(this.getClass().getName());
+    Logger logger = Logger.getLogger(HomeController.class.getName());
 
     @Autowired
     HomeService homeService;
@@ -24,7 +23,6 @@ public class HomeController {
     public String home(Model model) {
         logger.debug("home");
         logger.info("home");
-
 
         model.addAttribute("hello", homeService.getHello());
         return "/home";

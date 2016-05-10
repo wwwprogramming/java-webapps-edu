@@ -19,7 +19,6 @@ import java.security.Principal;
 @Controller
 public class HomeController {
 
-
     @RequestMapping(value = {"/", ""})
     public String justAnotherRandomName(Principal principal) {
         // So do I have user now? principal can be NULL!
@@ -36,7 +35,6 @@ public class HomeController {
     public String afterLogin(Principal principal) {
         // So do I have user now?
         System.out.println(principal);
-
 
         if (principal instanceof UsernamePasswordAuthenticationToken) {
             System.out.println(principal.getName());

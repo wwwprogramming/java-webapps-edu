@@ -8,7 +8,6 @@ import edu.uta.sis.calendars.domain.data.Event;
 import edu.uta.sis.calendars.domain.service.EventsService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,7 +55,7 @@ public class EventsServiceImpl implements EventsService {
     @Transactional(readOnly = false)
     public Event remove(Event event) {
         EventEntity ee = eventsRepository.remove(event.getId());
-        BeanUtils.copyProperties(ee, event);
+        BeanUtils.copyProperties(ee,event);
         return event;
     }
 
@@ -68,10 +67,4 @@ public class EventsServiceImpl implements EventsService {
         // copy id and other stuff like created timestamp
         BeanUtils.copyProperties(ee,event);
     }
-
-    @Scheduled(initialDelay=1000, fixedRate=5000)
-    public void checkedScheduler() {
-        System.out.println("Tadaa A");
-    }
-
 }

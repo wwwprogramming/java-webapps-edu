@@ -2,7 +2,6 @@ package edu.uta.sis.spring;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,7 +54,7 @@ public class QuotesController {
     }
 
     @RequestMapping(value="/update/{id}",method = RequestMethod.POST)
-    public String update2(@PathVariable("id") Integer id, @ModelAttribute("quote") Quote quote, Model model) {
+    public String update2(@PathVariable("id") Integer id, Model model) {
         // TODO UPDATE
 
         //model.addAttribute("quote", quote);
