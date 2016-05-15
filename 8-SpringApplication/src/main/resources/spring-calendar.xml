@@ -52,6 +52,7 @@
         <property name="prefix" value="/WEB-INF/view/thyme" />
         <property name="suffix" value=".html" />
         <property name="templateMode" value="HTML5" />
+        <property name="characterEncoding" value="UTF-8" />
     </bean>
 
     <!-- THYMELEAF VIEW -->
@@ -71,6 +72,7 @@
     <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
         <property name="templateEngine" ref="thymeTemplateEngine" />
         <property name="order" value="1" />
+        <property name="characterEncoding" value="UTF-8" />
     </bean>
 
     <bean id="application.properties" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">

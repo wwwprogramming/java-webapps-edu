@@ -26,6 +26,8 @@ public class UserEntity {
 
     String fullName;
 
+    Boolean enabled;
+
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     DateTime created;
 
@@ -88,5 +90,13 @@ public class UserEntity {
 
     public void setCreated(DateTime created) {
         this.created = created;
+    }
+
+    public Boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }

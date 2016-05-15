@@ -46,14 +46,14 @@ public class WwwUser implements UserDetails {
         enabled = true;
     }
 
-    public WwwUser(Long id, String username, String password, String email, String fullName, String role) {
+    public WwwUser(Long id, String username, String password, String email, String fullName, String role, Boolean enabled) {
         grantedAuthorities.add(new SimpleGrantedAuthority(role));
         setUsername(username);
         setPassword(password);
         setFullName(fullName);
         setId(id);
         setEmail(email);
-        enabled = true;
+        setEnabled(enabled);
     }
 
     public WwwUser(Long id, String username, String password, String email, String fullName, String role, DateTime created) {
@@ -142,5 +142,9 @@ public class WwwUser implements UserDetails {
 
     public void setCreated(DateTime created) {
         this.created = created;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ScheduledTaskImpl implements ScheduledTasks {
 
-    @Scheduled(initialDelay=1000, fixedRate=5000)
+    @Scheduled(initialDelay=1000, fixedRate=360000)
     public void runForrestRun() {
         System.out.println("Climbing to the tree");
     }

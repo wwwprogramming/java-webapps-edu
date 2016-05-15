@@ -72,12 +72,6 @@
 
 
     <security:authentication-manager alias="authenticationManager">
-        <security:authentication-provider>
-            <security:user-service>
-                <security:user name="jimi" password="jimispassword" authorities="ROLE_USER, ROLE_ADMIN" />
-                <security:user name="bob" password="bobspassword" authorities="ROLE_USER" />
-            </security:user-service>
-        </security:authentication-provider>
         <security:authentication-provider ref="myAuthenticationProvider"/>
     </security:authentication-manager>
 
@@ -85,12 +79,37 @@
         <property name="userDetailsService" ref="userService" />
     </bean>
 
-    <security:http use-expressions="true"  >
-        <security:csrf disabled="true" />
-        <security:intercept-url pattern="/**"  access="permitAll"/>
-        <!-- TODO ACCESS CONTROL -->
 
-        <security:form-login authentication-failure-url="/loginerr" login-page="/login/mylogin" default-target-url="/loggedin" />
+    <security:http pattern="/resources/**" security="none" />
+
+    <security:http use-expressions="true">
+
+        <security:access-denied-handler error-page="/accessdenied" />
+        <security:csrf disabled="true" />
+        <security:intercept-url pattern="/account/register"  access="permitAll"/>
+        <security:intercept-url pattern="/account/create"  access="permitAll"/>
+        <security:intercept-url pattern="/accounts/**"  access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/account/**"  access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+
+        <security:intercept-url pattern="/events/*" access="permitAll" />
+        <security:intercept-url pattern="/event/show/*" access="permitAll" />
+        <security:intercept-url pattern="/event/**" access="isFullyAuthenticated()" />
+
+        <security:intercept-url pattern="/files/**" access="isFullyAuthenticated()" />
+
+        <security:intercept-url pattern="/"  access="permitAll"/>
+        <security:intercept-url pattern="/home"  access="permitAll"/>
+
+
+        <security:intercept-url pattern="/login"  access="permitAll"/>
+        <security:intercept-url pattern="/mylogin"  access="permitAll"/>
+        <security:intercept-url pattern="/loggedin"  access="permitAll"/>
+        <security:intercept-url pattern="/loggedout"  access="permitAll"/>
+        <security:intercept-url pattern="/loginerr"  access="permitAll"/>
+
+
+        <security:intercept-url pattern="/**" access="isFullyAuthenticated()" />
+        <security:form-login authentication-failure-url="/loginerr" login-page="/mylogin" default-target-url="/loggedin" />
         <security:logout logout-success-url="/loggedout" />
 
         <security:anonymous enabled="true" username="anonymous" granted-authority="ROLE_ANONYMOUS" />

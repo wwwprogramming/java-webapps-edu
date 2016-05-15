@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,7 @@ public class UserServiceImpl implements UserService {
         dbu.setRole(u.getRole());
         dbu.setUsername(u.getUsername());
         dbu.setFullName(u.getFullName());
+        dbu.setEnabled(u.isEnabled());
         userRepository.store(dbu);
         u.setId(dbu.getId().longValue());
     }
@@ -55,13 +57,34 @@ public class UserServiceImpl implements UserService {
         ArrayList<WwwUser> wwwUserArrayList = new ArrayList<WwwUser>();
         if (userEntities != null && !userEntities.isEmpty()) {
             for (UserEntity u : userEntities) {
-                wwwUserArrayList.add(new WwwUser(new Long(u.getId()), u.getUsername(), u.getPassword(), u.getEmail(), u.getFullName(), u.getRole()));
+                wwwUserArrayList.add(new WwwUser(new Long(u.getId()), u.getUsername(), u.getPassword(), u.getEmail(), u.getFullName(), u.getRole(), u.isEnabled()));
             }
         }
         return wwwUserArrayList;
     }
 
+    @Transactional(readOnly = false)
     public void remove(Long id) {
         userRepository.remove(id.intValue());
+    }
+
+    @Transactional(readOnly = false)
+    public WwwUser update(Long id, String name, String email, String pw) {
+        UserEntity user = userRepository.getUser(id.intValue());
+        user.setFullName(name);
+        user.setEmail(email);
+        if (!StringUtils.isEmpty(pw)) {
+            user.setPassword(pw);
+        }
+        userRepository.update(user);
+        WwwUser wwwUser = new WwwUser(id,user.getUsername(), user.getPassword(),user.getEmail(),user.getFullName(),user.getRole(),user.isEnabled());
+        return wwwUser;
+    }
+
+    @Transactional(readOnly = false)
+    public void disable(Long id){
+        UserEntity e = userRepository.getUser(id.intValue());
+        e.setEnabled(Boolean.FALSE);
+        userRepository.update(e);
     }
 }

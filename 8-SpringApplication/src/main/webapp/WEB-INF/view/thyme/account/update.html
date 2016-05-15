@@ -16,19 +16,21 @@
     <a href="list.html" th:href="@{/accounts}"><span th:text="#{users.action.list}">Back To Accounts</span></a>
 </div>
 
-<p>TODO TODO TODO</p>
-
+<p>Update Your Account</p>
+<form method="post" action="account.html" th:action="@{/account/update/{id}(id=${user.id})}">
 <table>
     <tr><th th:text="#{users.th.id}">ID</th><td th:text="${user.id}">1</td></tr>
-    <tr><th th:text="#{users.th.username}">Title</th><td th:text="${user.username}">heikki1</td></tr>
-    <tr><th th:text="#{users.th.fullName}">Start</th><td th:text="${user.fullName}">Heikki Heikki</td></tr>
+    <tr><th th:text="#{users.th.username}">Username</th><td th:text="${user.username}">heikki1</td></tr>
+    <tr><th th:text="#{users.th.password}">Password</th><td><input type="text" name="password" value="password" th:value="${user.password}" /></td></tr>
+    <tr><th th:text="#{users.th.fullname}">Fullname</th><td><input type="text" name="fullName" value="fullname" th:value="${user.fullName}" /></td></tr>
+    <tr><th th:text="#{users.th.email}">Email</th><td><input type="text" name="email" value="email" th:value="${user.email}" /></td></tr>
     <tr><th th:text="#{users.th.role}">Role</th><td th:text="${user.role}">ROLE_USER</td></tr>
 
     <tr><th th:text="#{events.th.actions}">Actions</th><td>
-        <a href="update.html" th:href="@{/account/update/{id}(id=${user.id})}"><span th:text="#{users.action.update}">Updatea</span></a>
+        <a href="update.html" th:href="@{/account/update/{id}(id=${user.id})}"><span th:text="#{users.action.update}">Update</span></a>
     </td></tr>
 </table>
-
+</form>f
 </body>
 
 </html>

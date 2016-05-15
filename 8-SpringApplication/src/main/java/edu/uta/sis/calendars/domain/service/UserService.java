@@ -22,4 +22,8 @@ public interface UserService extends UserDetailsService {
     public List<WwwUser> getUsers();
 
     public void remove(Long id);
+
+    public WwwUser update(Long id, String name, String email, String pw);
+
+    public void disable(Long id);
 }
