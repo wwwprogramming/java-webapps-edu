@@ -283,6 +283,7 @@
         <configuration>
           <path>/</path>
           <port>8080</port>
+          <ajpPort>8009</ajpPort>
         </configuration>
 
       </plugin>

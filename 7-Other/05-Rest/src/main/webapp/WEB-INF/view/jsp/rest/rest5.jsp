@@ -95,6 +95,8 @@ jQuery("#btn1").click(function() {
     "data": JSON.stringify( data ),
     success: function(response) {
         console.log(response);
+        console.log(response.speed);
+        jQuery("body").appendTo("<p>"+speed+ "</p>");
     },
     dataType: "json"
   });
