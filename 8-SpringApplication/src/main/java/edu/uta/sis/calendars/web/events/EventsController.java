@@ -37,6 +37,14 @@ public class EventsController {
         return "/events/index";
     }
 
+    @RequestMapping(value ={"/events2","/events2/list"})
+    public String list2(Model model) {
+        logger.debug("List Events");
+
+        model.addAttribute("events", eventsService.getEvents());
+        return "/events/index2";
+    }
+
     @RequestMapping(value = "/event/create", method = RequestMethod.GET)
     public String create(Model model) {
         logger.debug("Create Event");
