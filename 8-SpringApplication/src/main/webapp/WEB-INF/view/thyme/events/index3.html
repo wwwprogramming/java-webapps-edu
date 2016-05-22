@@ -14,27 +14,34 @@
     <link rel="stylesheet" type="text/css" media="all"
           href="../../resources/css/fullcalendar.css" th:href="@{/resources/css/fullcalendar.css}" />
 
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/jquery-ui/jquery-ui.css" th:href="@{/resources/jquery-ui/jquery-ui.css}" />
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/jquery-ui/jquery-ui.theme.css" th:href="@{/resources/jquery-ui/jquery-ui.theme.css}" />
+
+
     <script th:src="@{/resources/js/jquery-2.1.4.js}" src="../../resources/js/jquery-2.1.4.js"></script>
-    <script th:src="@{/resources/js/angular.js}" src="../../resources/js/angular.js"></script>
+    <script th:src="@{/resources/jquery-ui/jquery-ui.js}" src="../../resources/jquery-ui/jquery-ui.js"></script>
 
     <object th:include="/events/head :: head" th:remove="tag" />
 
-    <script th:src="@{/resources/js/ng-ui-bootstrap/ui-bootstrap-tpls-1.3.2.js}" src="../../resources/js/ng-ui-bootstrap/ui-bootstrap-tpls-1.3.2.js"></script>
-    <script th:src="@{/resources/js/ui-calendar-master/calendar.js}" src="../../resources/js/ui-calendar-master/calendar.js"></script>
+    <script type="application/javascript">
+        jQuery(document).ready(function() {
+            console.log("ready");
+            jQuery("pre").html("Hello X");
+        });
 
-
-    <script th:src="@{/resources/app/myngapp.js}" src="../../resources/app/myngapp.js"></script>
+    </script>
 
 </head>
 
-<body data-ng-app="myApp">
+<body>
 
 
-<div id="container" data-ng-controller="MyApplicationController">
-<h1 th:text="#{events.list.h1}">Events</h1>
-<pre th:text="'{{state.greeting2}}'"></pre>
-        <pre data-ng-include="'pregreeting.html'"></pre>
-
+<div id="container">
+    <h1 th:text="#{events.list.h1}">Events</h1>
+<pre></pre>
     <a href="/events/create.html" th:href="@{/event/create }"><span th:text="#{events.create}">Create Event</span></a>
 
     <table id="listing">
@@ -63,7 +70,7 @@
         </tr>
         </tbody>
     </table>
-    </div>
-    </body>
+</div>
+</body>
 
-    </html>
+</html>

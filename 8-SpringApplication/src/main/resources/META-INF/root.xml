@@ -92,9 +92,13 @@
         <security:intercept-url pattern="/accounts/**"  access="hasRole('ROLE_ADMIN')"/>
         <security:intercept-url pattern="/account/**"  access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
 
+        <security:intercept-url pattern="/events" access="permitAll" />
         <security:intercept-url pattern="/events/*" access="permitAll" />
         <security:intercept-url pattern="/events2" access="permitAll" />
         <security:intercept-url pattern="/events2/*" access="permitAll" />
+        <security:intercept-url pattern="/events3" access="permitAll" />
+        <security:intercept-url pattern="/events3/*" access="permitAll" />
+
         <security:intercept-url pattern="/event/show/*" access="permitAll" />
         <security:intercept-url pattern="/event/**" access="isFullyAuthenticated()" />
 
