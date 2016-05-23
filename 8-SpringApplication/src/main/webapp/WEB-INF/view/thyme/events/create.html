@@ -4,9 +4,43 @@
 
 <head>
     <title>Calendars - Event - Create New</title>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" media="all"
           href="../../resources/css/gtvg.css" th:href="@{/resources/css/gtvg.css}" />
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/bootstrap.css" th:href="@{/resources/css/bootstrap.css}" />
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/fullcalendar.css" th:href="@{/resources/css/fullcalendar.css}" />
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/jquery-ui/jquery-ui.css" th:href="@{/resources/jquery-ui/jquery-ui.css}" />
+
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/jquery-ui/jquery-ui.theme.css" th:href="@{/resources/jquery-ui/jquery-ui.theme.css}" />
+
+
+    <script th:src="@{/resources/js/jquery-2.1.4.js}" src="../../resources/js/jquery-2.1.4.js"></script>
+    <script th:src="@{/resources/jquery-ui/jquery-ui.js}" src="../../resources/jquery-ui/jquery-ui.js"></script>
+
+    <script th:src="@{/resources/js/datetimepicker.js}" src="../../resources/js/datetimepicker.js"></script>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/datetimepicker.css" th:href="@{/resources/css/datetimepicker.css}" />
+
+
+
+    <object th:include="/events/head :: head" th:remove="tag" />
+
+    <script type="application/javascript">
+        jQuery(document).ready(function() {
+            jQuery(".dtp").datetimepicker({
+            dateFormat: "dd.mm.yy"
+            });
+        });
+
+    </script>
 </head>
 
 <body>
@@ -19,8 +53,8 @@
 <form method="post" action="create.html" th:action="@{/event/create}">
     <table>
         <tr><th th:text="#{events.th.title}">Title</th><td><input type="text" name="title" value="Title" th:value="${event.title}" /></td></tr>
-        <tr><th th:text="#{events.th.start}">Start</th><td><input type="text" name="start" value="1.1.1111 11:11" th:value="${event.start}" /></td></tr>
-        <tr><th th:text="#{events.th.end}">End</th><td><input type="text" name="end" value="1.1.1111 11:11" th:value="${event.end}" /></td></tr>
+        <tr><th th:text="#{events.th.start}">Start</th><td><input type="text" class="dtp" name="start" value="1.1.1111 11:11" th:value="${event.start}" /></td></tr>
+        <tr><th th:text="#{events.th.end}">End</th><td><input type="text" class="dtp"  name="end" value="1.1.1111 11:11" th:value="${event.end}" /></td></tr>
         <tr><th th:text="#{events.th.description}">Info</th><td><input type="text" name="description" value="About what" th:value="${event.description}" /></td></tr>
 
         <tr><th>&nbsp;</th><td>

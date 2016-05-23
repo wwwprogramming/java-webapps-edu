@@ -24,6 +24,12 @@
     <script th:src="@{/resources/js/jquery-2.1.4.js}" src="../../resources/js/jquery-2.1.4.js"></script>
     <script th:src="@{/resources/jquery-ui/jquery-ui.js}" src="../../resources/jquery-ui/jquery-ui.js"></script>
 
+    <script th:src="@{/resources/js/datetimepicker.js}" src="../../resources/js/datetimepicker.js"></script>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../resources/css/datetimepicker.css" th:href="@{/resources/css/datetimepicker.css}" />
+
+
+
     <object th:include="/events/head :: head" th:remove="tag" />
 
     <script type="application/javascript">
@@ -41,7 +47,7 @@
 
 <div id="container">
     <h1 th:text="#{events.list.h1}">Events</h1>
-<pre></pre>
+
     <a href="/events/create.html" th:href="@{/event/create }"><span th:text="#{events.create}">Create Event</span></a>
 
     <table id="listing">
