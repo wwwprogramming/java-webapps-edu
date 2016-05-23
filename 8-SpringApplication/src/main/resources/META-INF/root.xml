@@ -99,6 +99,8 @@
         <security:intercept-url pattern="/events3" access="permitAll" />
         <security:intercept-url pattern="/events3/*" access="permitAll" />
 
+        <security:intercept-url pattern="/location/**" access="permitAll" />
+
         <security:intercept-url pattern="/event/show/*" access="permitAll" />
         <security:intercept-url pattern="/event/**" access="isFullyAuthenticated()" />
 

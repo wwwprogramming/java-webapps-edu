@@ -130,12 +130,19 @@ jQuery(document).ready(function() {
       }
      });
 
+
+    jQuery("#demobutton").click(function() {
+        jQuery("#calendar").fullCalendar("gotoDate", moment("2016-12-24", 'YYYY-MM-DD'));
+    });
+
 });
 
 </script>
 </head>
 <body>
 <h2>Events Calendar</h2>
+
+<button id="demobutton">Example  - Go to 24.12.2016</button>
 
 <div id="calendar"></div>
 
