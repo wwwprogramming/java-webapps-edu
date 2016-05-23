@@ -34,7 +34,15 @@ public class EventsController {
         logger.debug("List Events");
 
         model.addAttribute("events", eventsService.getEvents());
-        return "/events/index";
+        return "/jsp/calendar/list";
+    }
+
+    @RequestMapping(value ={"/events/calendar"})
+    public String calendar(Model model) {
+        logger.debug("List Events");
+
+        model.addAttribute("events", eventsService.getEvents());
+        return "/jsp/calendar/calendar";
     }
 
     @RequestMapping(value ={"/events2","/events2/list"})

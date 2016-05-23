@@ -47,6 +47,17 @@
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 
+
+    <!-- JSP VIEWS -->
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/view" />
+        <property name="suffix" value=".jsp" />
+        <property name="order" value="1" />
+        <property name="viewNames" value="/jsp/**" />
+    </bean>
+
     <bean id="thymeTemplateResolver"
           class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
         <property name="prefix" value="/WEB-INF/view/thyme" />
@@ -71,7 +82,7 @@
 
     <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
         <property name="templateEngine" ref="thymeTemplateEngine" />
-        <property name="order" value="1" />
+        <property name="order" value="2" />
         <property name="characterEncoding" value="UTF-8" />
     </bean>
 
