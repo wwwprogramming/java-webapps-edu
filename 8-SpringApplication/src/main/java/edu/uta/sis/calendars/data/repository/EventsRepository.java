@@ -3,6 +3,7 @@ package edu.uta.sis.calendars.data.repository;
 
 
 import edu.uta.sis.calendars.data.entities.EventEntity;
+import org.joda.time.DateTime;
 
 import java.util.List;
 
@@ -21,5 +22,6 @@ public interface EventsRepository {
 
     public List<EventEntity> findAll();
 
+    public List<EventEntity> search(DateTime start, DateTime end);
 
 }

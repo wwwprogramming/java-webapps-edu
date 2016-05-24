@@ -57,6 +57,25 @@
         map: map,
         title:"Tampere!"
     });
+
+    map.addListener('click', function(e) {
+        var infowindow = new google.maps.InfoWindow({
+            content: "TADAA DAA DAA"
+        });
+
+        var marker = new google.maps.Marker({
+            position: e.latLng,
+            map: map
+        });
+        marker.addListener('click', function() {
+            infowindow.open(map, marker);
+        });
+
+        map.panTo(e.latLng   );
+
+      });
+
+
   }
   jQuery(function() { initializegmap() });
 </script>
