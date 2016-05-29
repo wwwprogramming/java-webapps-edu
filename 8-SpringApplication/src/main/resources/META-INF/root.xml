@@ -81,6 +81,8 @@
 
 
     <security:http pattern="/resources/**" security="none" />
+    <security:http pattern="/dhtml/**" security="none" />
+
     <security:http pattern="favicon.ico" security="none" />
 
     <security:http use-expressions="true">
