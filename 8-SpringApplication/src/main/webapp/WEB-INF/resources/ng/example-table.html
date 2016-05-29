@@ -1,0 +1,31 @@
+<table id="dynamictable" class="table table-striped">
+    <thead><tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Date</th>
+            <th>#</th>
+        </tr></thead>
+    <tbody>
+        <tr ng-show="rows.length == 0"><td colspan="4">Empty</td></tr>
+        <tr ng-repeat="row in rows">
+            <td>{{row.id}}</td>
+            <td>{{row.title}}</td>
+            <td>{{row.dt.format('DD.MM.YYYY HH:mm')}}</td>
+            <td><span ng-click="remove(row.id)" class="btn glyphicon glyphicon-remove-sign"></span></td>
+        </tr>
+        
+        <tr ng-show="showForm">
+            <td><input ng-model="form.id" disabled="disabled" /></td>
+	    <td><input ng-model="form.title" /></td>
+            <td><input ng-model="form.dt"/></td>
+            <td>
+		<span ng-click="save()" class="btn glyphicon glyphicon-plus"></span>
+		<span ng-click="cancel()" class="btn glyphicon glyphicon-remove-sign"></span></td>
+            </tr>
+        
+    </tbody>
+    
+</table>
+
+<button ng-click="openForm()" ng-disabled="showForm" class="btn btn-default glyphicon glyphicon-edit" type="button">Add Row</button>
+		
