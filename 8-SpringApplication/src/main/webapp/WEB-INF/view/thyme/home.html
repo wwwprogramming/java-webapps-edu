@@ -41,6 +41,20 @@
 
 </ul>
 
+<hr />
+
+<h2>DHTML</h2>
+
+
+<a href="/dhtml/jq.html" th:href="@{/dhtml/jq}"><span th:text="JQUERY">jQuery</span></a>
+<br />
+<a href="/dhtml/nq.html" th:href="@{/dhtml/nq}"><span th:text="Angular">Angular</span></a>
+<br />
+<a href="/dhtml/react.html" th:href="@{/dhtml/react}"><span th:text="Reacct">React</span></a>
+<br />
+
+
+
 <p th:if="${#authorization.expression('isAuthenticated()')}">
     <span sec:authentication="name">Bob</span>
 </p>
