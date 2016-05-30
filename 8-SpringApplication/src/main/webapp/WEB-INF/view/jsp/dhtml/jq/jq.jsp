@@ -61,6 +61,7 @@ jQuery(document).ready(function() {
 			console.log("renderTable");
 			table.children().remove();
 			var _newRows = [];
+			localStorage.setItem("rows", JSON.stringify(rows));
 			_.each(rows, function(row) {
 				console.log(row);
 				var _row = rowSkeleton.replace(":id", "id_" + row.id);
@@ -177,10 +178,13 @@ jQuery(document).ready(function() {
 
 })();
 
-	app1.init([
-		//{id:1, name:"A", dt: moment()},
-		//{id:2, name:"B", dt: moment()}
-	]);
+    var rowsFromStorage = JSON.parse( localStorage.getItem("rows") || "[]" ) ;
+
+    _.forEach(rowsFromStorage, function(row) {
+        row.dt = moment(row.dt);
+    });
+    console.log(rowsFromStorage);
+	app1.init(rowsFromStorage);
 
 
 }); // end ready()
